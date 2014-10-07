@@ -82,9 +82,9 @@ class Autoloader
 	 */
 	public function addPath($path)
 	{
-		foreach ( is_array($path) ? $path : func_get_args() as $v )
+		foreach (is_array($path) ? $path : func_get_args() as $v)
 		{
-			if (! in_array($path = self::parsePath($v), $this->_paths))
+			if (!in_array($path = self::parsePath($v), $this->_paths))
 			{
 				$this->_paths[] = $path;
 			}
@@ -100,7 +100,7 @@ class Autoloader
 	 */
 	public static function instance()
 	{
-		return self::$_instance ?  : (self::$_instance = new self());
+		return self::$_instance ?: (self::$_instance = new self());
 	}
 }
 
