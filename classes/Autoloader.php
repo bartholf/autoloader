@@ -80,7 +80,7 @@ class Autoloader {
 	public function addPath($path) {
 		foreach ( is_array($path) ? $path : func_get_args() as $v ) {
 			if (! in_array($path = self::parsePath($v), $this->_paths)) {
-				$this->_paths[] = self::parsePath($v);
+				$this->_paths[] = $path;
 			}
 		}
 
