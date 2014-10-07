@@ -16,16 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-class Autoloader {
+class Autoloader
+{
 	/**
 	 * Constructor
 	 */
-	private function __construct() {
+	private function __construct()
+	{
 		$this->addPath(__DIR__);
-		spl_autoload_register(array(
-				$this,
-				'load'
-		));
+		spl_autoload_register(array($this, 'load'));
 	}
 
 	/**
@@ -48,10 +47,13 @@ class Autoloader {
 	 * @param string $class
 	 * @return boolean
 	 */
-	private function load($class) {
+	private function load($class)
+	{
 		$class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-		foreach ( $this->_paths as $path ) {
-			if (file_exists($filename = sprintf('%s/%s.php', $path, $class))) {
+		foreach($this->_paths as $path)
+		{
+			if (file_exists($filename = sprintf('%s/%s.php', $path, $class)))
+			{
 				require $filename;
 
 				return true;
@@ -67,7 +69,8 @@ class Autoloader {
 	 * @param string $path
 	 * @return string
 	 */
-	private static function parsePath($path) {
+	private static function parsePath($path)
+	{
 		return rtrim(preg_replace('/^~/', $_SERVER['DOCUMENT_ROOT'], $path), '/');
 	}
 
@@ -77,9 +80,12 @@ class Autoloader {
 	 * @param mixed $path
 	 * @return Autoloader
 	 */
-	public function addPath($path) {
-		foreach ( is_array($path) ? $path : func_get_args() as $v ) {
-			if (! in_array($path = self::parsePath($v), $this->_paths)) {
+	public function addPath($path)
+	{
+		foreach ( is_array($path) ? $path : func_get_args() as $v )
+		{
+			if (! in_array($path = self::parsePath($v), $this->_paths))
+			{
 				$this->_paths[] = $path;
 			}
 		}
@@ -92,7 +98,8 @@ class Autoloader {
 	 *
 	 * @return Autoloader
 	 */
-	public static function instance() {
+	public static function instance()
+	{
 		return self::$_instance ?  : (self::$_instance = new self());
 	}
 }
