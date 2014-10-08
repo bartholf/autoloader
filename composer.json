@@ -11,5 +11,8 @@
 			"type": "vcs",
 			"url": "https://github.com/bartholf/autoloader.git"
 		}
-	]
+	],
+	"autoload": {
+		"psr-0": { "Rib": "./classes/Rib" }
+	}
 }
