@@ -16,12 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-class Autoloader
+namespace Rib;
+
+require 'SingletonProvider.php';
+
+use Rib\SingletonProvider;
+
+class Autoloader extends SingletonProvider
 {
 	/**
 	 * Constructor
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		spl_autoload_register(array($this, 'load'));
 	}
@@ -38,7 +44,7 @@ class Autoloader
 	 *
 	 * @var Autoloader
 	 */
-	private static $_instance;
+	//private static $_instance;
 
 	/**
 	 * Tries load wanted file from any of the paths
@@ -94,10 +100,10 @@ class Autoloader
 	 *
 	 * @return Autoloader
 	 */
-	public static function instance()
-	{
-		return self::$_instance ?: (self::$_instance = new self());
-	}
+//	public static function instance()
+//	{
+//		return self::$_instance ?: (self::$_instance = new self());
+//	}
 }
 
 return Autoloader::instance();
