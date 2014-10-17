@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace Rib;
 class Autoloader
 {
 	/**
@@ -24,7 +23,6 @@ class Autoloader
 	 */
 	private function __construct()
 	{
-		$this->addPath(__DIR__);
 		spl_autoload_register(array($this, 'load'));
 	}
 
@@ -51,7 +49,7 @@ class Autoloader
 	private function load($class)
 	{
 		$class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-		foreach($this->_paths as $path)
+		foreach(array_unique($this->_paths) as $path)
 		{
 			if (file_exists($filename = sprintf('%s/%s.php', $path, $class)))
 			{
@@ -85,10 +83,7 @@ class Autoloader
 	{
 		foreach (is_array($path) ? $path : func_get_args() as $v)
 		{
-			if (!in_array($path = self::parsePath($v), $this->_paths))
-			{
-				$this->_paths[] = $path;
-			}
+			$this->_paths[] = $path;
 		}
 
 		return $this;
