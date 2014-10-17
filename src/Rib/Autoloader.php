@@ -40,13 +40,6 @@ class Autoloader extends SingletonProvider
 	private $_paths = [];
 
 	/**
-	 * The instance of this class
-	 *
-	 * @var Autoloader
-	 */
-	//private static $_instance;
-
-	/**
 	 * Tries load wanted file from any of the paths
 	 *
 	 * @param string $class
@@ -94,16 +87,6 @@ class Autoloader extends SingletonProvider
 
 		return $this;
 	}
-
-	/**
-	 * Gets the instance of Autoloader
-	 *
-	 * @return Autoloader
-	 */
-//	public static function instance()
-//	{
-//		return self::$_instance ?: (self::$_instance = new self());
-//	}
 }
 
 return Autoloader::instance();
