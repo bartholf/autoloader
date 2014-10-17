@@ -83,7 +83,7 @@ class Autoloader
 	{
 		foreach (is_array($path) ? $path : func_get_args() as $v)
 		{
-			$this->_paths[] = $path;
+			$this->_paths[] = self::parsePath($path);
 		}
 
 		return $this;
