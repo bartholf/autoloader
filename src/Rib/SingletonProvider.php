@@ -18,8 +18,6 @@
  */
 namespace Rib;
 
-use \ReflectionClass;
-
 abstract class SingletonProvider
 {
 	public static function instance()
